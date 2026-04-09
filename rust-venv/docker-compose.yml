@@ -1,0 +1,30 @@
+services:
+  rustlab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
+        USERNAME: ${USERNAME:-student}
+    image: rust-labs:debian-slim
+    container_name: rust-labs
+    init: true
+    working_dir: /workspace
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./workspace:/workspace
+      - cargo-registry:/opt/rust/cargo/registry
+      - cargo-git:/opt/rust/cargo/git
+      - rustup-home:/opt/rust/rustup
+    environment:
+      RUSTUP_HOME: /opt/rust/rustup
+      CARGO_HOME: /opt/rust/cargo
+      PATH: /opt/rust/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    command: bash -lc "sleep infinity"
+
+volumes:
+  cargo-registry:
+  cargo-git:
+  rustup-home:

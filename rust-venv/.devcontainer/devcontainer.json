@@ -1,0 +1,22 @@
+{
+  "name": "Rust Labs (Docker Compose)",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "rustlab",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "student",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "tamasfe.even-better-toml"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "rust-analyzer.checkOnSave.command": "clippy",
+        "rust-analyzer.cargo.allFeatures": true
+      }
+    }
+  }
+}
