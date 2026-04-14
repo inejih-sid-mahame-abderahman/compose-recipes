@@ -1,0 +1,29 @@
+services:
+  mlsec-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mlsec-lab
+    restart: unless-stopped
+    working_dir: /workspace
+    ports:
+      - "127.0.0.1:8888:8888"
+      - "127.0.0.1:8000:8000"
+    environment:
+      JUPYTER_TOKEN: "mlsec-lab"
+      JUPYTER_ENABLE_LAB: "yes"
+      NB_UID: "1000"
+      NB_GID: "100"
+      CHOWN_HOME: "yes"
+      CHOWN_EXTRA: "/workspace"
+      CHOWN_EXTRA_OPTS: "-R"
+      SQLITE_DB_PATH: "/workspace/db/lab.db"
+      PYTHONPATH: "/workspace"
+    volumes:
+      - ./workspace:/workspace
+      - ./datasets:/datasets:ro
+    command: >
+      bash -lc "
+      mkdir -p /workspace/notebooks /workspace/data /workspace/models /workspace/reports /workspace/exports /workspace/db /workspace/apps &&
+      start-notebook.sh --NotebookApp.token='mlsec-lab' --NotebookApp.password=''
+      "
