@@ -131,7 +131,7 @@ Expected: directory listing (may be empty aside from system dirs).
 ```bash
 docker exec -it hadoop-hive-single bash -lc "su - hdoop -c 'hdfs dfs -mkdir -p /tp && hdfs dfs -chmod -R 1777 /tp && hdfs dfs -ls -d /tp'"
 docker exec -it hadoop-hive-single bash -lc "su - hdoop -c 'hdfs dfs -mkdir -p /tp/tests'"
-docker exec -it hadoop-hive-single hdfs dfs -put -f /etc/hosts /tp/tests/hosts.txt
+docker exec -it hadoop-hive-single bash -lc "su - hdoop -c 'hdfs dfs -put -f /etc/hosts /tp/tests/hosts.txt'"
 docker exec -it hadoop-hive-single hdfs dfs -ls /tp/tests
 docker exec -it hadoop-hive-single hdfs dfs -cat /tp/tests/hosts.txt | head
 ```

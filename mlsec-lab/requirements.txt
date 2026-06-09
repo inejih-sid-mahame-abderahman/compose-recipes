@@ -49,3 +49,16 @@ torch==2.2.2
 torchvision==0.17.2
 torchaudio==2.2.2
 opacus==1.4.0
+
+cryptography
+pycryptodome
+pynacl
+argon2-cffi
+pyjwt
+pytest
+pytest-cov
+hypothesis
+rich
+typer
+tabulate
+pqcrypto
